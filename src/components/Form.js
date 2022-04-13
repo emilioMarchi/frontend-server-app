@@ -1,18 +1,23 @@
-import React, {useState } from 'react' 
+import React, {useState, useEffect } from 'react' 
 import { useFormik } from 'formik';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 
- export default function From() {
+ export default function From({title, txtBtn, path}) {
 
     const [formInfo, setFormInfo] = useState()
     const [formResponse, setFormResponse] = useState()
     const [formState, setFormState] = useState('logIn')
 
+
+    useEffect(() => {
+      setFormState(path)
+    }, [])
+
     const navigate = useNavigate()
 
     const handlePage = () => {
-      navigate('/products')
+      navigate('/productos')
     }
 
     const formik = useFormik({
@@ -47,12 +52,11 @@ import { useNavigate } from 'react-router-dom';
     return ( 
         <div>
           <div className='form-header'>
-            <a onClick={()=>{setFormState('signIn')}}>Iniciar Sesion</a>
-            <a onClick={()=>{setFormState('logIn')}}>Crear Usuario</a>
+            <a href='/ingresar'>Iniciar Sesion</a>
+            <a href='/registrarse'>Crear Usuario</a>
           </div>
           <form className='form-log' onSubmit={formik.handleSubmit}>
-            {formState === 'logIn' ? <h1>Crear usuario</h1> : <h1>Iniciar sesión</h1> }
-              
+              <h2>{title}</h2>  
               <div className='form-level'>
                   <label>Email</label>
                   <input
@@ -65,7 +69,7 @@ import { useNavigate } from 'react-router-dom';
                   autoFocus
                   />
               </div>
-                  <button className='form-button' type="submit">{formState === 'logIn' ? 'Crear' : 'Iniciar'}</button>
+                  <button className='form-button' type="submit">{txtBtn}</button>
 
           </form>
         </div>

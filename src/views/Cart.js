@@ -19,7 +19,7 @@ export default function Cart(){
           })
           .then((res)=>{
                 const data = res.data.user
-                
+                console.log(res.data.user.cart)
                 if(data.cart.length > 0){
                     setUserCart(data.cart )
                 } else {
