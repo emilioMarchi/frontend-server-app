@@ -10,7 +10,7 @@ export default function Products() {
     const getData = async () => {
 
         const email = sessionStorage.getItem('email')
-        console.log(email)
+        
         if(email===null){
             alert('no acces')
             console.log(email)

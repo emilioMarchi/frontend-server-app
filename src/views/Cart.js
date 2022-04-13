@@ -23,7 +23,7 @@ export default function Cart(){
                 if(data.cart.length > 0){
                     setUserCart(data.cart )
                 } else {
-                    console.log('error')
+                    console.log('no products')
                 }
 
             })
@@ -31,13 +31,16 @@ export default function Cart(){
 
     return(
         <div>
-            {   userCart.length > 0 ?
-                userCart.map((item) => {
-                    return(
-                        <Card title={item.title} />
-                    )
-                }) : ''
-            }
+            <h2>Carrito</h2>
+            <div>
+                {   userCart.length > 0 ?
+                    userCart.map((item) => {
+                        return(
+                            <Card title={item.title} />
+                        )
+                    }) : <h2>No hay productos en el carrito</h2>
+                }
+            </div>
         </div>
     )
 }
